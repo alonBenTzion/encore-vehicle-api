@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: encore-vehicle-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: UPSTREAM_VEHICLE_URL
+        value: https://insurance-webhook-945894769129.us-central1.run.app/vehicle-info
+      - key: UPSTREAM_TIMEOUT_SECONDS
+        value: "5"
+      - key: API_TOKEN
+        sync: false
+      - key: API_CLIENT_NAME
+        value: encore-flow
+      - key: API_SCOPES
+        value: vehicle:read
