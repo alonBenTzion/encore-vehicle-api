@@ -1,0 +1,5 @@
+.venv
+.pytest_cache
+.env
+FDE_Home_Assignment.pdf
+__pycache__
